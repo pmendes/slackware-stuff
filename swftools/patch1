@@ -1,0 +1,95 @@
+--- src/gif2swf.c	2011-01-01 22:30:29.000000000 -0500
++++ src/gif2swf.c.new	2016-07-04 11:58:29.092337532 -0400
+@@ -222,6 +222,7 @@
+ 
+     GifFileType *gft;
+     FILE *fi;
++    int ret;
+ 
+     if ((fi = fopen(sname, "rb")) == NULL) {
+         if (VERBOSE(1))
+@@ -230,13 +231,22 @@
+     }
+     fclose(fi);
+ 
+-    if ((gft = DGifOpenFileName(sname)) == NULL) {
++#if defined(GIFLIB_MAJOR) && GIFLIB_MAJOR >= 5
++    gft = DGifOpenFileName(sname, NULL);
++#else
++    gft = DGifOpenFileName(sname);
++#endif
++    if (gft == NULL) {
+         fprintf(stderr, "%s is not a GIF file!\n", sname);
+         return t;
+     }
+ 
+-    if (DGifSlurp(gft) != GIF_OK) {
++    if ((ret = DGifSlurp(gft)) != GIF_OK) {
++#if defined(GIFLIB_MAJOR) && GIFLIB_MAJOR >= 5
++        fprintf(stderr, "GIF-LIB: %s\n", GifErrorString(ret));
++#else
+         PrintGifError();
++#endif
+         return t;
+     }
+ 
+@@ -455,7 +465,11 @@
+ 
+     free(pal);
+     free(imagedata);
++#if defined(GIFLIB_MAJOR) && GIFLIB_MAJOR >= 5
++    DGifCloseFile(gft, NULL);
++#else
+     DGifCloseFile(gft);
++#endif
+ 
+     return t;
+ }
+@@ -465,6 +479,7 @@
+     FILE *fi;
+     char *s = malloc(strlen(fname) + 5);
+     GifFileType *gft;
++    int ret;
+ 
+     if (!s)
+         exit(2);
+@@ -488,7 +503,12 @@
+     }
+     fclose(fi);
+ 
+-    if ((gft = DGifOpenFileName(s)) == NULL) {
++#if defined(GIFLIB_MAJOR) && GIFLIB_MAJOR >= 5
++    gft = DGifOpenFileName(s, NULL);
++#else
++    gft = DGifOpenFileName(s);
++#endif
++    if (gft == NULL) {
+         fprintf(stderr, "%s is not a GIF file!\n", fname);
+         return -1;
+     }
+@@ -498,8 +518,12 @@
+     if (global.max_image_height < gft->SHeight)
+         global.max_image_height = gft->SHeight;
+ 
+-    if (DGifSlurp(gft) != GIF_OK) { 
++    if ((ret = DGifSlurp(gft)) != GIF_OK) {
++#if defined(GIFLIB_MAJOR) && GIFLIB_MAJOR >= 5
++        fprintf(stderr, "GIF-LIB: %s\n", GifErrorString(ret));
++#else
+         PrintGifError();
++#endif
+         return -1;
+     }
+     // After DGifSlurp() call, gft->ImageCount become available
+@@ -518,7 +542,11 @@
+             fprintf(stderr, "frame: %u, delay: %.3f sec\n", i + 1, getGifDelayTime(gft, i) / 100.0);
+     }
+ 
++#if defined(GIFLIB_MAJOR) && GIFLIB_MAJOR >= 5
++    DGifCloseFile(gft, NULL);
++#else
+     DGifCloseFile(gft);
++#endif
+ 
+     return 0;
+ }

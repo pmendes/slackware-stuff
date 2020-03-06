@@ -1,0 +1,8 @@
+PRGNAM="swftools"
+VERSION="0.9.2"
+HOMEPAGE="http://www.swftools.org"
+DOWNLOAD="http://www.swftools.org/swftools-0.9.2.tar.gz"
+MD5SUM="1055ebbe3b4cadcc71e83775a5a0906d"
+MAINTAINER="Pedro Mendes"
+EMAIL="pedro@gepasi.org"
+APPROVED=""
