@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+       |-----handy-ruler------------------------------------------------------|
+gladtex: gladTeX (preprocessor for embedding LaTeX maths as images in HTML)
+gladtex:
+gladtex: Gladtex is a utility that enables LaTeX equations within HTML code. 
+gladtex: The maths, embedded in <eq>..</eq> tags, as if within $$..$$ in 
+gladtex: LaTeX, is fed through latex and replaced by images.
+gladtex:
+gladtex: http://ans.hsh.no/home/mgg/gladtex/
+gladtex:
+gladtex:
+gladtex:
+gladtex:

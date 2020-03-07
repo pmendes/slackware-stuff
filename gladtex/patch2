@@ -1,0 +1,12 @@
+--- CMakeLists.txt.original	2016-07-14 21:54:18.478128119 -0400
++++ CMakeLists.txt	2016-07-14 21:54:34.245427470 -0400
+@@ -42,7 +42,7 @@
+                         LIBRARY DESTINATION lib
+                         ARCHIVE DESTINATION lib)
+ install(PROGRAMS gladtex DESTINATION bin)
+-install(FILES eqn2img.1 DESTINATION share/man/man1)
++install(FILES eqn2img.1 DESTINATION man/man1)
+ if(POD2MAN)
+-    install(FILES ${CMAKE_BINARY_DIR}/gladtex.1 DESTINATION share/man/man1)
++    install(FILES ${CMAKE_BINARY_DIR}/gladtex.1 DESTINATION man/man1)
+ endif()

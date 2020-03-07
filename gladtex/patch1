@@ -1,0 +1,42 @@
+--- eqn2img.c.old	2016-07-14 21:15:06.992425245 -0400
++++ eqn2img.c	2016-07-14 21:39:09.306167890 -0400
+@@ -623,6 +623,7 @@
+ {
+   GifFileType *fp;
+   GifColorType pal[256];
++  int GifLastError;
+   int i, row;
+   ColorMapObject *color_map;
+   unsigned char gc_ext[5] = { /* graphic control extension (to get transparent background) */
+@@ -634,19 +635,19 @@
+   };
+ 
+   if(img_name) {
+-    fp = EGifOpenFileName(img_name, 0);
++    fp = EGifOpenFileName(img_name, 0,&GifLastError);
+     if(!fp)
+       return -1;
+   }
+   else
+-    fp = EGifOpenFileHandle(STDOUT_FILENO);
++    fp = EGifOpenFileHandle(STDOUT_FILENO,&GifLastError);
+ 
+   for(i=0; i<256; i++) {
+     pal[i].Red = (i*background.red + (255-i)*foreground.red)/255;
+     pal[i].Green = (i*background.green + (255-i)*foreground.green)/255;
+     pal[i].Blue = (i*background.blue + (255-i)*foreground.blue)/255;
+   }
+-  color_map = MakeMapObject(256, pal);
++  color_map = GifMakeMapObject(256, pal);
+ 
+   /* EGifSetGifVersion("89a"); this causes segfault (but is really required for transparency, I think) */
+   EGifPutScreenDesc(fp, width, height, 256, 255, color_map);
+@@ -660,7 +661,7 @@
+       return -1;
+   }
+ 
+-  EGifCloseFile(fp);
++  EGifCloseFile(fp,&GifLastError);
+ 
+   return 0;
+ }  

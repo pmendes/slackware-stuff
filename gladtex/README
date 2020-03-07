@@ -1,0 +1,12 @@
+gladTeX is a preprocessor that enables the use of LaTeX maths within HTML 
+code. The maths, embedded in <eq>..</eq> tags, as if within $$..$$ in 
+LaTeX, is fed through latex and replaced by images.
+
+Features:
+ - Image alignment (baseline of equations agree with baseline of text)
+ - Gif and Png support
+ - Transparent background
+ - Antialiasing 
+
+Requires: latex, libgif and libpng, all included in stock Slackware
+
