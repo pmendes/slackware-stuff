@@ -1,0 +1,8 @@
+PRGNAM="stopmotion"
+VERSION="0.6.2"
+HOMEPAGE="http://stopmotion.bjoernen.com/"
+DOWNLOAD="http://developer.skolelinux.no/info/studentgrupper/2005-hig-stopmotion/project_management/webpage/releases/stopmotion-0.6.2.tar.gz"
+MD5SUM="a139f036286f31bba21effb2b6553d1e"
+MAINTAINER="Pedro Mendes"
+EMAIL="pedro@gepasi.org"
+APPROVED=""

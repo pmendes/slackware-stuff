@@ -1,0 +1,11 @@
+SuperShow - create narrated videos from slideshows
+
+SuperShow can take your slides (exported to PDF) and your audio/video 
+recording, and mix them in a single, small size, Adobe Flash file, which can 
+be played from the net or downloaded to be seen locally. SuperShow allows you 
+to easily sincronize the audio and the slide transitions and insulates you 
+from the complexity of creating Flash files from Linux with SWFtools
+
+Requires SWFTools
+
+http://www.rastersoft.com/programas/supershow.html

@@ -1,0 +1,8 @@
+PRGNAM="supershow"
+VERSION="2.3b"
+HOMEPAGE="http://www.rastersoft.com/programas/supershow.html"
+DOWNLOAD="http://www.rastersoft.com/descargas/supershow-2.3b.tar.bz2"
+MD5SUM="339cd2d74d389b6014a708238685a881"
+MAINTAINER="Pedro Mendes"
+EMAIL="pedro@gepasi.org"
+APPROVED=""
