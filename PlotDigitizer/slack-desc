@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in. You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+             |-----handy-ruler------------------------------------------------------|
+PlotDigitizer: PlotDigitizer - digitize scanned plots of functional data
+PlotDigitizer:
+PlotDigitizer: PlotDigitizer is a Java program Plot Digitizer is a Java program
+PlotDigitizer: used to digitize scanned plots of functional data. Often data is 
+PlotDigitizer: found presented in reports and references as functional X-Y type 
+PlotDigitizer: scatter or line plots. In order to use this data, it must somehow 
+PlotDigitizer: be digitized. This program will allow you to take a scanned image of
+PlotDigitizer: a plot (in GIF, JPEG, or PNG format) and quickly digitize values off 
+PlotDigitizer: the plot just by clicking the mouse on each data point.
+PlotDigitizer:
+PlotDigitizer: Homepage: http://plotdigitizer.sourceforge.net/

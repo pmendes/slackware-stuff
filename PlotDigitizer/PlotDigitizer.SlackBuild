@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# Slackware build script for PlotDigitizer
+
+# written by Pedro Mendes, hereby put in the public domain
+
+PRGNAM=PlotDigitizer
+VERSION=2.6.8
+BUILD=${BUILD:-1}
+TAG=${TAG:-_SBo}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i486 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+# This is a repackage of a java distribution
+# CFLAGS are not required
+
+if [ "$ARCH" = "x86_64" ]; then
+  LIBDIRSUFFIX="64"
+else
+  LIBDIRSUFFIX=""
+fi
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM_Linux_and_Others
+tar xvf $CWD/$PRGNAM\_$VERSION\_Linux\_and\_Others.tgz
+cd $PRGNAM\_Linux\_and\_Others
+chown -R root:root .
+chmod -R u+w,go+r-w,a-s .
+
+mkdir -p $PKG/usr/bin $PKG/usr/lib$LIBDIRSUFFIX $PKG/usr/share/{pixmaps,applications,SamplePlots}
+cp -a PlotDigitizer.jar $PKG/usr/lib$LIBDIRSUFFIX
+echo "#! /bin/sh" > $PKG/usr/bin/PlotDigitizer
+echo "/usr/lib$LIBDIRSUFFIX/java/bin/java -Xmx128m -jar /usr/lib$LIBDIRSUFFIX/PlotDigitizer.jar" >> $PKG/usr/bin/PlotDigitizer
+chmod a+x $PKG/usr/bin/PlotDigitizer
+cp -a $CWD/PlotDigitizer.desktop $PKG/usr/share/applications/PlotDigitizer.desktop
+cp -a $CWD/PlotDigitizerIcon.png $PKG/usr/share/pixmaps/PlotDigitizerIcon.png
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a GPL_license.txt LesserGPL_license.txt README.txt $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/PlotDigitizer.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/PlotDigitizer.SlackBuild
+cp -a SamplePlots/* $PKG/usr/share/SamplePlots
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}

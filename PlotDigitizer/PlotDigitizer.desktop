@@ -1,0 +1,8 @@
+[Desktop Entry]
+Exec=/usr/bin/PlotDigitizer
+Icon=/usr/share/pixmaps/PlotDigitizerIcon.png
+Type=Application
+Categories=Science
+Name=PlotDigitizer
+GenericName=Plot Digitizer
+StartupNotify=true
