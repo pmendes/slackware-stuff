@@ -1,0 +1,48 @@
+diff --git a/src/application/externalchangemonitor.cpp b/src/application/externalchangemonitor.cpp
+index bdb887d..4f396be 100644
+--- a/src/application/externalchangemonitor.cpp
++++ b/src/application/externalchangemonitor.cpp
+@@ -26,6 +26,7 @@
+ 
+ #include <inotifytools/inotifytools.h>
+ #include <inotifytools/inotify.h>
++#include <unistd.h>
+ 
+ /**
+  * @todo uniform most of the getenv("home") calls so that it is done once
+diff --git a/src/domain/animation/scene.cpp b/src/domain/animation/scene.cpp
+index aa47882..134013c 100644
+--- a/src/domain/animation/scene.cpp
++++ b/src/domain/animation/scene.cpp
+@@ -20,6 +20,7 @@
+ #include "scene.h"
+ #include <sstream>
+ #include <cstring>
++#include <unistd.h>
+ 
+ Scene::Scene()
+ {
+diff --git a/src/presentation/frontends/qtfrontend/mainwindowgui.cpp b/src/presentation/frontends/qtfrontend/mainwindowgui.cpp
+index e61d848..4896f2c 100644
+--- a/src/presentation/frontends/qtfrontend/mainwindowgui.cpp
++++ b/src/presentation/frontends/qtfrontend/mainwindowgui.cpp
+@@ -45,6 +45,7 @@
+ 
+ #include <cstdlib>
+ #include <iostream>
++#include <unistd.h>
+ 
+ using namespace std;
+ using namespace Qt;
+diff --git a/src/technical/projectserializer.cpp b/src/technical/projectserializer.cpp
+index 3653ed3..a36c75b 100644
+--- a/src/technical/projectserializer.cpp
++++ b/src/technical/projectserializer.cpp
+@@ -28,6 +28,7 @@
+ #include <libgen.h>
+ #include <stdlib.h>
+ #include <cstring>
++#include <unistd.h>
+ 
+ const char ProjectSerializer::imageDirectory[] = "images/";
+ const char ProjectSerializer::soundDirectory[] = "sounds/";

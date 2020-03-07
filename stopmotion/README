@@ -1,0 +1,17 @@
+Stopmotion is a program to create stop motion animation movies. The users 
+will be able to create stop-motions from pictures imported from a camera 
+or from the harddrive, add sound effects and export the animation to 
+different video formats such as mpeg or avi. 
+
+Stopmotion build requires libtar (available in SlackBuilds.org).
+
+Stopmotion usage depends on several external programs: 
+ - dvgrab for capturing images from DV cameras (available in SlackBuilds.org)
+ - vgrabbj for capturing images from v4l1 devices
+ - ImageMagik for capturing images from v4l2 devices (included in Slackware 13)
+ - ffmpeg for video encoding (available in SlackBuilds.org)
+ - mencode for video encoding (available in SlackBuilds.org in the 
+   mplayer package)
+
+See http://stopmotion.bjoernen.com for more info.
+

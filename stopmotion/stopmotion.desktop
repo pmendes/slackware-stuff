@@ -1,0 +1,8 @@
+[Desktop Entry]
+Exec=stopmotion
+Icon=/usr/share/pixmaps/stopmotion.xpm
+Type=Application
+Categories=AudioVideo
+Name=StopMotion
+GenericName=Animation Editor
+StartupNotify=true
