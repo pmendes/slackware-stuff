@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+        |-----handy-ruler------------------------------------------------------|
+fswebcam: fswebcam - Small and simple webcam software for *nix.
+fswebcam:
+fswebcam: fswebcam is a neat and simple webcam app. It captures images from a 
+fswebcam: V4L1/V4L2 compatible device or file, averages them to reduce noise 
+fswebcam: and draws a caption using the GD Graphics Library which also handles 
+fswebcam: compressing the image to PNG or JPEG. The resulting image is saved to 
+fswebcam: a file or sent to stdio where it can be piped to something like 
+fswebcam: ncftpput or scp. 
+fswebcam:
+fswebcam: Homepage: http://www.firestorm.cx/fswebcam/
+fswebcam:
