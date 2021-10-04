@@ -22,7 +22,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=engauge
-VERSION=${VERSION:-10.10}
+VERSION=${VERSION:-12.1}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -69,9 +69,10 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
+OJP=`ls  /usr/include/openjpeg*/openjpeg.h | sed 's/openjpeg.h//'`
 POPPLER_INCLUDE=/usr/include/poppler/qt5 \
 POPPLER_LIB=/usr/lib${LIBDIRSUFFIX} \
-OPENJPEG_INCLUDE=/usr/include/openjpeg-2.3 \
+OPENJPEG_INCLUDE=$OJP \
 OPENJPEG_LIB=/usr/lib${LIBDIRSUFFIX} \
 qmake-qt5 \
   QMAKE_CFLAGS+="$SLKCFLAGS" \
