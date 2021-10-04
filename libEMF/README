@@ -4,4 +4,5 @@ files on POSIX systems which can be imported into StarOffice/OpenOffice.
 The library is also used by pstoedit to convert postscript and pdf files 
 to EMF format. 
 
-unlike previous versions, this compiles well in both 32 and 64 bits
+This might build with 32-bit compat libs on x86_64, but definitely not
+without them.
