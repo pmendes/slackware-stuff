@@ -15,5 +15,5 @@ fswebcam: compressing the image to PNG or JPEG. The resulting image is saved to
 fswebcam: a file or sent to stdio where it can be piped to something like 
 fswebcam: ncftpput or scp. 
 fswebcam:
-fswebcam: Homepage: http://www.firestorm.cx/fswebcam/
+fswebcam: Homepage: http://www.sanslogic.co.uk/fswebcam/
 fswebcam:
