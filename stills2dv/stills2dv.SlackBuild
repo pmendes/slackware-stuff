@@ -1,26 +1,35 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Slackware build script for stills2dv
 #
 # This is hereby put in the public domain
 
+cd $(dirname $0) ; CWD=$(pwd)
+
 PRGNAM=stills2dv
-VERSION=alpha-0.601
-VERSION2=alpha_0.601
+VERSION=${VERSION:-alpha_0.602}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
 
-# Automatically determine the architecture we're building on:
+SRCVER=$(printf $VERSION | tr _ -)
+
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
     i?86) ARCH=i486 ;;
     arm*) ARCH=arm ;;
-    # Unless $ARCH is already set, use uname -m for all other archs:
        *) ARCH=$( uname -m ) ;;
   esac
 fi
 
-CWD=$(pwd)
+# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
+# the name of the created package would be, and then exit. This information
+# could be useful to other scripts.
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
+fi
+
 TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
@@ -44,11 +53,18 @@ set -eu
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
-rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tgz
-cd $PRGNAM-$VERSION
+rm -rf $PRGNAM-$SRCVER
+tar xvf $CWD/$PRGNAM-$SRCVER.tgz
+cd $PRGNAM-$SRCVER
 chown -R root:root .
-chmod -R u+w,go+r-w,a-s .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+# Patch to convert to libpng16
+patch -p1 < $CWD/libpng.patch
 
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
@@ -59,21 +75,21 @@ cp -f stills2dv $PKG/usr/bin
 chmod 755 $PKG/usr/bin/stills2dv
 chown root:root $PKG/usr/bin/stills2dv
 
-find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a Makefile README.txt $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a README.txt $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a Documentation/* $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
-mkdir -p $PKG/usr/share/$PRGNAM-$VERSION
-cp -a exampleworkfile.s2d $PKG/usr/share/$PRGNAM-$VERSION
-cp -ar example_data_files $PKG/usr/share/$PRGNAM-$VERSION
-rm -rf $PKG/usr/share/$PRGNAM-$VERSION/example_data_files/tmp
+mkdir -p $PKG/usr/share/$PRGNAM-$SRCVER
+cp -a exampleworkfile.s2d $PKG/usr/share/$PRGNAM-$SRCVER
+cp -ar example_data_files $PKG/usr/share/$PRGNAM-$SRCVER
+rm -rf $PKG/usr/share/$PRGNAM-$SRCVER/example_data_files/tmp
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION2-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
