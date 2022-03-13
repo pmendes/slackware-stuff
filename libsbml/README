@@ -5,6 +5,5 @@ example programs), but rather a library you can embed in your own
 applications. 
 
 libsbml understands all Levels and Versions of SBML, and supports 
-plug-in extensions for SBML Level 3 packages, as well as the SBML 
-Layout proposal by Gauges, Rost, Sahle and Wegner. LibSBML is 
-written in ISO C and C++.
+plug-in extensions for SBML Level 3 packages. LibSBML is written in 
+ISO C and C++.
