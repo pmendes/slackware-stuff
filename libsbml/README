@@ -1,0 +1,10 @@
+libsbml is a free, open-source programming library to help you read, 
+write, manipulate, translate, and validate SBML files and data 
+streams. It is not an application itself (though it does come with 
+example programs), but rather a library you can embed in your own 
+applications. 
+
+libsbml understands all Levels and Versions of SBML, and supports 
+plug-in extensions for SBML Level 3 packages, as well as the SBML 
+Layout proposal by Gauges, Rost, Sahle and Wegner. LibSBML is 
+written in ISO C and C++.
