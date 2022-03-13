@@ -3,6 +3,8 @@ will be able to create stop-motions from pictures imported from a camera
 or from the harddrive, add sound effects and export the animation to 
 different video formats such as mpeg or avi. 
 
+Stopmotion does not build on Slackware 15.0, it needs QT4
+
 Stopmotion build requires libtar (available in SlackBuilds.org).
 
 Stopmotion usage depends on several external programs: 
