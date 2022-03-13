@@ -9,15 +9,12 @@
          |-----handy-ruler------------------------------------------------------|
 freetuxtv: freetuxtv (WebTV player)
 freetuxtv:
-freetuxtv: The goal of this project is to create a WebTV player, working on the 
-freetuxtv: Linux platform. It supports WebTV and Web Radio, including time 
-freetuxtv: shifting and recording live channels with ability to set duration. 
-freetuxtv: The GUI is developed in GTK2+ and uses the VLC engine to display 
-freetuxtv: the channels. 
-freetuxtv:
+freetuxtv: FreetuxTV is a Linux media player based on GTK+ and LibVLC for 
+freetuxtv: watching and recording free WebTV, WebRadio and WebCam channels on a 
+freetuxtv: PC. It can also be used for importing, watching and recording TV 
+freetuxtv: channels from Tvheadend streaming server.
+freetuxtv: 
 freetuxtv: http://code.google.com/p/freetuxtv/wiki/HomePage
 freetuxtv:
 freetuxtv:
 freetuxtv:
-freetuxtv:
-
