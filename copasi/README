@@ -2,7 +2,7 @@ COPASI is a package for modeling and simulation of biochemical networks,
 popular in the field of systems biology.
 
 COPASI is a stand-alone program that simulates models of biochemical
-networks using ODE solvers or Gillespie's stochastic simulation
+networks using ODE/SDE solvers or Gillespie's stochastic simulation
 algorithm. COPASI is compatible with models in SBML format.  It also
 performs several analyses, such as steady state, stability, parameter
 sensitivity, elementary modes, Lyapunov exponents, optimization, and
