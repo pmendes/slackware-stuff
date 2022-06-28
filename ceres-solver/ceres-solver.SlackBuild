@@ -1,0 +1,116 @@
+#!/bin/bash
+# Slackware build script for CERES
+
+# adapted for version 2.1.0 by Pedro Mendes
+# using vanilla Blas and LAPACK instead of Atlas
+
+# Author: Lockywolf, lockywolf gmail.com
+# Original Author: template from http://www.slackbuilds.org
+# Maintainer: Lockywolf, lockywolf gmail.com
+# Date-written: 2019-05-03T10:36:56
+# License: CC0-https://creativecommons.org/share-your-work/public-domain/cc0/
+# ( The person who associated a work with this deed has dedicated the
+#   work to the public domain by waiving all of his or her rights to
+#   the work worldwide under copyright law, including all related and
+#   neighboring rights, to the extent al lowed by law. You can copy,
+#   modify, distribute and perform the work, even for
+#    commercial purposes, all without asking permission. )
+
+# This script is NOT guaranteed to be updated as new versions arrive.
+# However, you can always email me.
+
+# There is a slight cofusion about the proper UNIX name for this
+# package. You may also find it named 'CERES' and 'ceres'.
+
+PRGNAM=ceres-solver
+FAKEROOT_DIR_PREFIX=${FAKEROOT_DIR_PREFIX:-package}
+VERSION=${VERSION:-2.1.0}
+BUILD=${BUILD:-1}
+TAG=${TAG:-_metageek}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i586 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/$TAG}
+PKG=$TMP/$FAKEROOT_DIR_PREFIX-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
+  LIBDIRSUFFIX=""
+elif [ "$ARCH" = "i686" ]; then
+  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
+  LIBDIRSUFFIX=""
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O3 -fPIC -lpthread"
+  LIBDIRSUFFIX="64"
+else
+  SLKCFLAGS="-O2"
+  LIBDIRSUFFIX=""
+fi
+
+
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+echo "Unpacking $CWD/$PRGNAM-$VERSION.tar.gz ..."
+tar zvxf $CWD/$PRGNAM-$VERSION.tar.gz
+cd $PRGNAM-$VERSION
+
+mkdir -p build
+
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+
+cd build
+
+cmake \
+    -DCMAKE_C_FLAGS="$SLKCFLAGS" \
+    -DCMAKE_CXX_FLAGS="$SLKCFLAGS -fpermissive" \
+    -DCMAKE_BUILD_TYPE="Release" \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DLIB_SUFFIX=$LIBDIRSUFFIX \
+    -DCERES_DOCS_INSTALL_DIR=doc/$PRGNAM-$VERSION \
+    -DCXX11=ON \
+    -DBUILD_BENCHMARKS=ON \
+    -DBUILD_DOCUMENTATION=ON \
+    -DBUILD_SHARED_LIBS=ON \
+    .. .
+
+make -j4 VERBOSE=1
+make install DESTDIR=$PKG
+mkdir -p $PKG/usr/lib$LIBDIRSUFFIX/$PRGNAM
+mkdir -p $PKG/usr/share/$PRGNAM-$VERSION
+cp -r bin $PKG/usr/lib$LIBDIRSUFFIX/$PRGNAM/
+mkdir -p $PKG/usr/share/$PRGNAM-$VERSION
+cp -r ../data $PKG/usr/share/$PRGNAM-$VERSION/
+cd ..
+
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
+  | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp -ar README.md LICENSE examples $PKG/usr/doc/$PRGNAM-$VERSION/
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+mv $PKG/usr/share/doc/* $PKG/usr/doc/$PRGNAM-$VERSION && rm -rf $PKG/usr/share/doc/
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
