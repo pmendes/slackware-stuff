@@ -25,7 +25,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=copasi
-VERSION=${VERSION:-4.36.260}
+VERSION=${VERSION:-4.38.268}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -68,8 +68,8 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf COPASI-$VERSION-$BINNAME $PRGNAM-$VERSION
-mkdir $PRGNAM-$VERSION
-sh $CWD/COPASI-$VERSION-$BINNAME.sh -t /tmp -i $PRGNAM-$VERSION -d $PRGNAM-$VERSION
+sh $CWD/COPASI-$VERSION-$BINNAME.sh -e .
+mv COPASI-$VERSION-$BINNAME $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
@@ -78,11 +78,11 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-mkdir -p $PKG/usr/bin $PKG/usr/share/{copasi,applications}
+mkdir -p $PKG/usr/bin $PKG/usr/share/{copasi,pixmaps,applications}
 cp -a bin/* $PKG/usr/bin/
 cp -r share/copasi $PKG/usr/share
-sed -i "s=$TMP/$PRGNAM-$VERSION=/usr=g" COPASI.desktop
-cp COPASI.desktop $PKG/usr/share/applications/COPASI.desktop
+cp $CWD/copasi.desktop $PKG/usr/share/applications/copasi.desktop
+cp share/copasi/icons/Copasi48-Alpha.xpm $PKG/usr/share/pixmaps/copasi.xpm
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
