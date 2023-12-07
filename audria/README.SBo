@@ -1,0 +1,6 @@
+At the time of creation of this slackpackage (Dec 7, 2023) audria was
+only available as a github repository without a release pacakge. To
+keep reproducibility I downloaded the repository as a tar.gz and this
+is used here as the source. This was carried out with:
+
+wget https://github.com/scaidermern/audria/tarball/master -o audria.tar.gz

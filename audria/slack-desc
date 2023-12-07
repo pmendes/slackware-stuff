@@ -1,0 +1,21 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+      |-----handy-ruler------------------------------------------------------|
+audria: audria (A Utility for Detailed Resource Inspection of Applications)
+audria:
+audria: audria reads various program statistics from the /proc filesystem,
+audria: including: current and average CPU usage, virtual memory usage, IO
+audria: load, time spent in user/system mode, page faults. audria can be used
+audria: to monitor a single process, a group of processes or all currently
+audria: running processes. Furthermore it is possible to specify a command to
+audria: execute in order to watch a process directly from startup. In
+audria: contrast to some other tools, audria is designed to run in batch mode
+audria: at very short intervals. This allows very detailed inspections of the
+audria: resource usage of a process.
+
+
