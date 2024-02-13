@@ -1,7 +1,7 @@
 PRGNAM="focus-stack"
 VERSION="1.4"
 HOMEPAGE="https://github.com/PetteriAimonen/focus-stack"
-DOWNLOAD="https://github.com/PetteriAimonen/focus-stack/archive/refs/tags/1.4.tar.gz"
+DOWNLOAD="https://github.com/PetteriAimonen/focus-stack/archive/1.4/focus-stack-1.4.tar.gz"
 MD5SUM="c7a6b7b0b5bd666199dba1823fd27cc2"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
