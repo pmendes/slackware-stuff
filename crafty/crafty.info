@@ -1,0 +1,20 @@
+PRGNAM="crafty"
+VERSION="25.2"
+HOMEPAGE="https://craftychess.com/"
+DOWNLOAD="https://craftychess.com/downloads/source/crafty-25.2.zip \
+          https://craftychess.com/downloads/book/book.bin \
+          https://craftychess.com/documentation/craftydoc.html \
+          https://craftychess.com/documentation/crafty.man \
+          https://craftychess.com/documentation/crafty.doc.ps \
+          https://craftychess.com/documentation/tournament.howto"
+MD5SUM="d8ad87d9b0fc39a437595203d7b302fc \
+        f8f93189c64324b1959a489da822438e \
+        584ef65843016328d67a7c9df4007e87 \
+        26163f4048f3ca05a1f6a1a2fb64525f \
+        6cef69aa2f9ea1ceb74b6c14edc8291f \
+        1e911ca0812ef14f21e40821dda5c1cd"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES=""
+MAINTAINER="Pedro Mendes"
+EMAIL="pedro@gepasi.org"
