@@ -1,0 +1,35 @@
+Crafty is a chess program written by professor Robert Hyatt, with
+development and assistance from Michael Byrne, Tracy Riegle, and
+Peter Skinner. It is derived from Cray Blitz, winner of the 1983
+and 1986 World Computer Chess Championships. Tord Romstad,
+co-author of Stockfish, described Crafty as "arguably the most
+important and influential chess program ever".
+
+Crafty can be used as a chess engine by eboard and xboard.
+
+Crafty uses a library of games book.bin that is extended as it
+plays, so each user must have their own copy of this file. The
+original is located in /usr/share/crafty-25.2/book.bin. It is
+suggested that each user create a folder ~/.crafty and copy the
+file to that folder:
+ mkdir ~/.crafty && cp /usr/share/crafty-25.2/book.bin ~/.crafty
+then set this environment variable to point there:
+ export CRAFTY_BOOK_PATH=~/.crafty
+It is also useful to set:
+ export CRAFTY_LOG_PATH=~/.crafty
+ export CRAFTY_RC_PATH=~/.crafty
+
+Crafty can use the syzygy endgame tables (both WDL and DTC), see
+https://chess.massimilianogoi.com/download/tablebases/ for
+practical information. There is a link there to download the
+3-4-5 set from a single zip file (around 1 Gb). These should be
+unzipped to a folder in an SSD (or solid state USB drive) and
+pointed to by the CRAFTY_TB_PATH environment variable. For
+example:
+  mkdir /opt/syzygy
+  cd /opt/syzygy
+  unzip /tmp/3-4-5_pieces_Syzygy.zip
+  export CRAFTY_TB_PATH=/opt/syzygy/3-4-5
+
+Read the file crafty.txt or craftydoc.html for more details of
+Crafty's operation.
