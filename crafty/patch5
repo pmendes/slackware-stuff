@@ -1,0 +1,11 @@
+--- option.c.original	2025-11-22 11:32:00.875074056 -0500
++++ option.c	2025-11-22 11:50:23.081910002 -0500
+@@ -980,7 +980,7 @@
+     char *readstat = (char *) -1;
+     int lines = 0;
+ 
+-    helpfile = fopen("crafty.hlp", "r");
++    helpfile = fopen("/usr/doc/crafty/crafty.hlp", "r");
+     if (!helpfile) {
+       printf("ERROR.  Unable to open \"crafty.hlp\" -- help unavailable\n");
+       return 1;
