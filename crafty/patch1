@@ -1,0 +1,11 @@
+--- Makefile.original	2025-11-20 22:34:06.788630777 -0500
++++ Makefile	2025-11-21 18:52:23.795169650 -0500
+@@ -84,7 +84,7 @@
+ unix-gcc:
+ 	$(MAKE) -j target=UNIX \
+ 		CC=gcc \
+-		opt='-DSYZYGY -DTEST -DCPUS=4' \
++		opt='-DLOGDIR=\"\/tmp\" -DTBDIR=\"\/usr\/share\/crafty\" -DBOOKDIR=\"\/usr\/share\/crafty\" -DRCDIR=\"\/etc\" -DSYZYGY -DTEST -DCPUS=4' \
+ 		CFLAGS='-Wall -Wno-array-bounds -pipe -O3 -fprofile-use \
+ 		-mpopcnt -fprofile-correction -pthread' \
+ 		LDFLAGS='$(LDFLAGS) -fprofile-use -pthread -lstdc++' \

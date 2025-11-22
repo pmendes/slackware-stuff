@@ -1,0 +1,20 @@
+--- resign.c.original	2025-11-21 22:45:37.336808004 -0500
++++ resign.c	2025-11-21 22:50:11.672015790 -0500
+@@ -109,7 +109,7 @@
+     if (speech) {
+       char announce[128];
+ 
+-      strcpy(announce, "./speak ");
++      strcpy(announce, "./speak-crafty ");
+       strcat(announce, "Resign");
+       v = system(announce);
+       if (v <= 0)
+@@ -132,7 +132,7 @@
+       if (speech) {
+         char announce[128];
+ 
+-        strcpy(announce, "./speak ");
++        strcpy(announce, "./speak-crafty ");
+         strcat(announce, "Drawoffer");
+         v = system(announce);
+         if (v <= 0)

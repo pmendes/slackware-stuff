@@ -1,0 +1,11 @@
+--- analyze.c.original	2025-11-21 22:45:27.186689495 -0500
++++ analyze.c	2025-11-21 22:48:42.648973855 -0500
+@@ -147,7 +147,7 @@
+         if (speech) {
+           char announce[64];
+ 
+-          strcpy(announce, "./speak ");
++          strcpy(announce, "./speak-crafty ");
+           strcat(announce, outmove);
+           strcat(announce, " &");
+           v = system(announce);

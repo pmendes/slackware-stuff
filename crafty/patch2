@@ -1,0 +1,47 @@
+--- main.c.original	2025-11-21 22:45:17.515576595 -0500
++++ main.c	2025-11-21 22:47:36.412199231 -0500
+@@ -4698,7 +4698,7 @@
+           if (audible_alarm)
+             printf("%c", audible_alarm);
+           if (speech) {
+-            strcpy(announce, "./speak ");
++            strcpy(announce, "./speak-crafty ");
+             strcat(announce, "Drawaccept");
+             v = system(announce);
+             if (v != 0)
+@@ -4711,7 +4711,7 @@
+         if (!xboard) {
+           Print(1, "Draw declined.\n");
+           if (speech) {
+-            strcpy(announce, "./speak ");
++            strcpy(announce, "./speak-crafty ");
+             strcat(announce, "Drawdecline");
+             v = system(announce);
+             if (v != 0)
+@@ -4748,7 +4748,7 @@
+           strcpy(pgn_result, "1-0");
+         }
+         if (speech) {
+-          strcpy(announce, "./speak ");
++          strcpy(announce, "./speak-crafty ");
+           strcat(announce, "Checkmate");
+           v = system(announce);
+           if (v != 0)
+@@ -4759,7 +4759,7 @@
+         if (!xboard) {
+           Print(1, "stalemate\n");
+           if (speech) {
+-            strcpy(announce, "./speak ");
++            strcpy(announce, "./speak-crafty ");
+             strcat(announce, "Stalemate");
+             v = system(announce);
+             if (v != 0)
+@@ -4802,7 +4802,7 @@
+       if (speech) {
+         char *moveptr = OutputMove(tree, 0, game_wtm, last_pv.path[1]);
+ 
+-        strcpy(announce, "./speak ");
++        strcpy(announce, "./speak-crafty ");
+         strcat(announce, moveptr);
+         strcat(announce, " &");
+         v = system(announce);
