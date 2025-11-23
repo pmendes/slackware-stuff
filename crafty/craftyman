@@ -1,0 +1,104 @@
+.\" Manpage for crafty.
+.\" Contact pedro@gepasi.org to correct errors or typos in this page.
+.TH CRAFTY 6 "22 November 2025" "25.2" "Crafty"
+.SH NAME
+crafty \- chess engine
+.SH SYNOPSIS
+.B crafty
+.SH DESCRIPTION
+Crafty is a free, open source computer chess program written by Prof. Robert Hyatt. It is derived from Cray Blitz, and it pioneered the use of rotated bitboard data structures to represent the chess board. Crafty can be used as a chess engine by eboard and xboard or it can be used directly on the command line to play or analyze games. It can
+use the free syzygy endgame tablebases, if available. Crafty is no longer under development, this is the last version available.
+
+.SH OPTIONS
+Crafty does not take any specific command line options, however it will process any arguments present in the command line as if they were commands on the terminal. A thorough explanation of Crafty's terminal commands can be found in
+.B /usr/doc/crafty
+
+Crafty can be configured for a stronger game by setting some optional parameters (examples below).  These parameters can be put into the
+.B .craftyrc
+file, or used as start-up parameters from the terminal.
+.
+.TP
+.B ponder on
+Allows Crafty to think on your time
+.TP
+.B hash=256m
+Increases Crafty's position hash to 256MB
+.TP
+.B hashp=64m
+Increases Crafty's pawn hash to 64MB
+.TP
+.B egtb
+Tells Crafty to use syzygy Endgame Tables
+.TP
+.B cache=32m
+Increases Crafty's Endgame Table Cache to 32MB
+.TP
+.B swindle on
+Allows Crafty to try to win drawn games (according to Endgame Tables)
+.TP
+.B mt=4
+Increases Crafty's MaxThreads to 4 for a quad core computer, adjust to larger values depending on number of physical cores of the computer.
+
+.SH FILES
+The locations of many crafty files are compiled into the executable when it is built, but they can be overriden through environment variables (see below).
+.TP
+.B .craftyrc
+Startup file, includes any commands that can be issued in the crafty main prompt. Useful to specify certain options, such as logging, number of threads, etc.
+.TP
+.B book.bin
+Library of games used by crafty in openings. A pre-loaded template exists in
+.B /usr/share/crafty/book.bin
+which can be copied to a user's writeable location (see
+.B CRAFTY_BOOK_PATH
+environment variable). This file is not mandatory, but if it is absent Crafty will play without a library of openings and will compute moves from the start.
+.TP
+.B books.bin
+File with suggested opening lines when Crafty doesn't know (or doesn't think) it is playing against a computer. This is not mandatory.
+.TP
+.B bookc.bin
+File with suggested opening lines when playing against a computer. This is not mandatory.
+.SH ENVIRONMENT
+.TP
+.B CRAFTY_BOOK_PATH
+Location of writeable
+.B book.bin
+,
+.B books.bin
+and
+.B bookc.bin
+opening libraries. Each user needs to have their own copies of these files in writeable locations.
+A seed version of
+.B book.bin
+can be found in
+.B /usr/share/crafty/book.bin
+.TP
+.B CRAFTY_LOG_PATH
+Location where log files will be written to.
+.TP
+.B CRAFTY_RC_PATH
+Location of
+.B .craftyrc
+file, which contains options that are set at startup
+.TP
+.B CRAFTY_TB_PATH
+Location where the syzygy endgame tables are located
+
+.SH SEE ALSO
+xboard(6), eboard(6)
+
+Extensive documentation for version 18 can be found in
+.B /usr/doc/crafty/
+, listing all the commands that crafty can process.
+
+See https://chess.massimilianogoi.com/download/tablebases/ for information about the syzygy endgame tables and download links.
+
+.SH BUGS
+Issuing the command
+.B help
+through the command line (as in
+.B crafty help
+) displays the first page of help and then crashes. However if the command is issued after starting the program, it works without errors.
+
+This is legacy software that is no longer developed, therefore there is no expectation that bugs will be fixed.
+.SH AUTHOR
+Robert Hyatt
