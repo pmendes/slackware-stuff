@@ -30,12 +30,10 @@ BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
-# Automatically determine the architecture we're building on:
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
     i?86) ARCH=i586 ;;
     arm*) ARCH=arm ;;
-    # Unless $ARCH is already set, use uname -m for all other archs:
        *) ARCH=$( uname -m ) ;;
   esac
 fi
@@ -82,65 +80,43 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# Your application will probably need different configure flags;
-# these are provided as an example only.
-# Be sure to build only shared libraries unless there's some need for
-# static.
-#CFLAGS="$SLKCFLAGS" \
-#CXXFLAGS="$SLKCFLAGS" \
-#./configure \
-#  --prefix=/usr \
-#  --libdir=/usr/lib${LIBDIRSUFFIX} \
-#  --sysconfdir=/etc \
-#  --localstatedir=/var \
-#  --mandir=/usr/man \
-#  --docdir=/usr/doc/$PRGNAM-$VERSION \
-#  --disable-static \
-#  --build=$ARCH-slackware-linux
-
-# apply patch to customize paths
 patch -Np0 < $CWD/patch1 || exit
 patch -Np0 < $CWD/patch2 || exit
 patch -Np0 < $CWD/patch3 || exit
 patch -Np0 < $CWD/patch4 || exit
+patch -Np0 < $CWD/patch5 || exit
 
-# Compile the application
 make unix-gcc
 
-# no make install, so we put files where they should go
-# binaries
 mkdir -p $PKG/usr/bin
 cp crafty $PKG/usr/bin
 cp $CWD/speak-crafty $PKG/usr/bin
 
-# the opening book
 mkdir -p $PKG/usr/share/$PRGNAM-$VERSION
 cp $CWD/book.bin $PKG/usr/share/$PRGNAM-$VERSION
 
-# Strip binaries and libraries
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-# Copy program documentation into the package
-# The included documentation varies from one application to another, so be sure
-# to adjust your script as needed
-# Also, include the SlackBuild script in the documentation directory
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-# make the txt doc
 groff -Tascii $CWD/crafty.man > $PKG/usr/doc/$PRGNAM-$VERSION/crafty.txt
 cp -a \
-  $CWD/craftydoc.html $CWD/tournament.howto \
+  crafty.hlp $CWD/README $CWD/craftydoc.html $CWD/tournament.howto \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
-# Copy the slack-desc (and a custom doinst.sh if necessary) into ./install
+mkdir -p $PKG/usr/man/man6
+cp $CWD/craftyman $PKG/usr/man/man6/crafty.6
+if [ -d $PKG/usr/man ]; then
+  ( cd $PKG/usr/man
+  find . -type f -exec gzip -9 {} \;
+  for i in $(find . -type l) ; do ln -s $(readlink $i).gz $i.gz ; rm $i ; done
+  )
+fi
+
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
-#cat $CWD/doinst.sh > $PKG/install/doinst.sh
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
-# Make the package; be sure to leave it in $OUTPUT
-# If package symlinks need to be created during install *before*
-# your custom contents of doinst.sh runs, then add the -p switch to
-# the makepkg command below -- see makepkg(8) for details
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
