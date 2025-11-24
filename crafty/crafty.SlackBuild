@@ -88,9 +88,9 @@ patch -Np0 < $CWD/patch5 || exit
 
 make unix-gcc
 
-mkdir -p $PKG/usr/bin
-cp crafty $PKG/usr/bin
-cp $CWD/speak-crafty $PKG/usr/bin
+mkdir -p $PKG/usr/games
+cp crafty $PKG/usr/games
+cp $CWD/speak-crafty $PKG/usr/games
 
 mkdir -p $PKG/usr/share/$PRGNAM-$VERSION
 cp $CWD/book.bin $PKG/usr/share/$PRGNAM-$VERSION
