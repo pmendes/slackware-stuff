@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH SCID 1 "January 12, 2009"
+.TH SCID 1 "November 25, 2025"
 .SH NAME
 scid, pgnfix, pgnscid, sc_addmove, sc_eco, sc_epgn, sc_import, sc_remote,
 sc_spell, sc_tree, scidlet, scidpgn, scmerge, spliteco, tcscid,
@@ -27,7 +27,7 @@ from PGN format.
 The command 'scid' starts the graphical user interface.
 .PP
 The spell-checking file is placed in
-/usr/share/scid/data/ratings_2008_4.ssp (in case Scid can't find it), 
+/usr/share/scid/data/ratings1025.ssp (in case Scid can't find it),
 while the books for scidlet is in /usr/share/scid/books/scidlet40k.sbk. 
 Scid should show a photo whenever a game by a player with a photograph is
 loaded. This should happen automatically. If not, copy or link the files in
@@ -36,11 +36,10 @@ and run Scid. To see the photos you must load the spell-checking file.
 
 .SH SLACKWARE-SPECIFIC INFORMATION
 As packaged with the script from SlackBuilds.org, the directories 
-/usr/share/scid/books and /usr/share/scid/bases are owned by root:games
-and with permissions of 775, which means that they are readable by anyone,
-but writable by only members of the "games" group.  This makes it possible
-for members of the "games" group to add/change/delete books and bases for
-scid.  However, a much better approach is something along these lines:
+/usr/share/scid/books and /usr/share/scid/bases are owned by root:root
+and with permissions of 755, which means that they are readable by anyone,
+but only writable by root. Users should copy these files to their own area,
+for example, something along these lines:
 
  mkdir -p $HOME/.scid
  cp -r /usr/share/scid/{bases,books} $HOME/.scid
@@ -55,5 +54,6 @@ to 0666.
 Scid was written by Shane Hudson <sgh@users.sourceforge.net>.  This
 manual page was written by Peter van Rossum <petervr@debian.org>, for
 the Debian GNU/Linux system, and subsequently modified by Marco Pessotto
-<melmothx@gmail.com> and Robby Workman <rworkman@slackware.com> with 
-Slackware-specific information and other minor tweaks.
+<melmothx@gmail.com>, Robby Workman <rworkman@slackware.com> and Pedro
+Mendes <pedro@gepasi.org> with Slackware-specific information and other
+minor tweaks.
