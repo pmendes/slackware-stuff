@@ -120,13 +120,13 @@ if [ -f $CWD/scidlet40k.zip ] ; then
     mkdir -p $PKG/usr/share/scid/books
     unzip $CWD/scidlet40k.zip -d $PKG/usr/share/scid/books
 fi
-if [ -f $CWD/ratings_2008_4.zip ] ; then
+if [ -f $CWD/ratings1025.zip ] ; then
     mkdir -p $PKG/usr/share/scid/data
-    unzip $CWD/ratings_2008_4.zip -d $PKG/usr/share/scid/data
+    unzip $CWD/ratings1025.zip -d $PKG/usr/share/scid/data
 fi
-if [ -f $CWD/photos2007.zip ] ; then
+if [ -f $CWD/Player_photos.zip ] ; then
     mkdir -p $PKG/usr/share/scid/photos
-    unzip $CWD/photos2007.zip -d $PKG/usr/share/scid/photos
+    unzip $CWD/Player_photos.zip -d $PKG/usr/share/scid/photos
 fi
 
 # Fix some permissions
