@@ -92,6 +92,9 @@ cp -r tcl $PKG/usr/share/scid
 
 # make the phalanx-scid engine
 cd engines/phalanx-scid/
+# patch the bug of specifying castling with lowercase
+sed -i 's/printf("o-o-o/printf("O-O-O/' io.c
+sed -i 's/printf("o-o/printf("O-O/' io.c
 make
 # now put it in engines
 mkdir -p $PKG/usr/share/scid/engines/phalanx-scid
@@ -111,7 +114,13 @@ make -j
 # now put it in engines
 mkdir -p $PKG/usr/share/scid/engines/togaII
 cp togaII $PKG/usr/share/scid/engines/togaII
-# since it is an UCI engine, we don't bother adding to /usr/games
+# add it as an independent game too
+echo '#!/bin/bash' > $PKG/usr/games/togaII
+echo >> $PKG/usr/games/togaII
+echo 'cd /usr/share/scid/engines/togaII'>> $PKG/usr/games/togaII
+echo './togaII' >> $PKG/usr/games/togaII
+echo 'cd -' >> $PKG/usr/games/togaII
+chmod a+x $PKG/usr/games/togaII
 
 cd ../../../
 
