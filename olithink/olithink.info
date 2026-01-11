@@ -1,6 +1,6 @@
 PRGNAM="olithink"
 VERSION="5.11.9"
-HOMEPAGE="https://github.com/olithink/OliThink"
+HOMEPAGE="http://brausch.org/home/chess/"
 DOWNLOAD="http://brausch.org/home/chess/OliThink5.11.9.zip"
 MD5SUM="2e9de6e61fa8f6b03d60d92424d58cef"
 DOWNLOAD_x86_64=""
